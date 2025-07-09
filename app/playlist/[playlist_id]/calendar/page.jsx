@@ -80,9 +80,9 @@ if (!playlist_id) return <p className="text-red-500">Invalid playlist ID</p>;
       </h1>
 
       {loading ? (
-        <p className="text-gray-400">Loading calendar...</p>
+        <p  style={{ fontFamily: 'var(--font-nunito)' }} className="text-gray-400">Loading calendar...</p>
       ) : message ? (
-        <p className="text-red-400">{message}</p>
+        <p  style={{ fontFamily: 'var(--font-nunito)' }} className="text-red-400">{message}</p>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
           {/* Calendar Left */}
@@ -93,6 +93,7 @@ if (!playlist_id) return <p className="text-red-500">Invalid playlist ID</p>;
       onChange={onDateChange}
       tileContent={tileContent}
       className="styled-calendar text-xl"
+      style={{ fontFamily: 'var(--font-nunito)' }}
     />
   </div>
 </div>
@@ -100,7 +101,7 @@ if (!playlist_id) return <p className="text-red-500">Invalid playlist ID</p>;
 
           {/* Videos Right */}
           <div>
-            <h2 className="text-2xl font-semibold mb-4">
+            <h2 style={{ fontFamily: 'var(--font-manrope)' }} className="text-2xl font-semibold mb-4">
               {selectedDate
                 ? `Videos on ${selectedDate.toDateString()}`
                 : '📆 Select a date to view scheduled videos'}
@@ -119,16 +120,10 @@ if (!playlist_id) return <p className="text-red-500">Invalid playlist ID</p>;
                   rel="noopener noreferrer"
                   className="block bg-[#1d1d2e] rounded-xl border border-white/10 shadow-md overflow-hidden hover:scale-[1.01] transition cursor-pointer"
                 >
-                  {v.thumbnail && (
-                    <img
-                      src={v.thumbnail}
-                      alt={v.title}
-                      className="w-full h-48 object-cover"
-                    />
-                  )}
+
                   <div className="p-4">
-                    <h3 className="text-lg font-semibold mb-1">{v.title}</h3>
-                    <p className="text-sm text-gray-400">Status: {v.status}</p>
+                    <h3 style={{ fontFamily: 'var(--font-manrope)' }}  className="text-lg font-semibold mb-1">{v.title}</h3>
+                    <p style={{ fontFamily: 'var(--font-nunito)' }} className="text-sm text-gray-400">Status: {v.status}</p>
                   </div>
                 </a>
 

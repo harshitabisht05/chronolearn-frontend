@@ -152,18 +152,19 @@ export default function Navbar() {
     {/* Left side */}
     <h1
       onClick={go('/')}
+      style={{ fontFamily: 'var(--font-manrope)' }}
       className="text-white font-bold text-lg cursor-pointer"
     >
       ChronoLearn
     </h1>
 
     {/* Desktop Menu */}
-    <div className="hidden md:flex items-center gap-x-4">
+    <div style={{ fontFamily: 'var(--font-manrope)' }} className="hidden md:flex items-center gap-x-4">
       {renderLinks()}
     </div>
 
     {/* Mobile Hamburger */}
-    <div className="md:hidden relative">
+    <div style={{ fontFamily: 'var(--font-manrope)' }} className="md:hidden relative">
       <button
         onClick={() => setIsMenuOpen((prev) => !prev)}
         className="text-white"

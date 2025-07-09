@@ -73,7 +73,7 @@ const handleUpdate = async (videoId, updatedStatus) => {
     setTimeout(() => setMessage(''), 3000);
   } catch (err) {
     console.error(err);
-    setMessage('❌ Error while updating.');
+    setMessage('❌ Error while updating.'); 
   }
 };
 
@@ -122,7 +122,7 @@ const handleUpdate = async (videoId, updatedStatus) => {
               <div
                 key={video.id}
                 ref={(el) => (menuRefs.current[index] = el)}
-                className="rounded-xl border border-white/10 shadow-lg hover:shadow-xl transition overflow-hidden bg-[#1d1d2e]"
+                className="rounded-xl border border-white/10 shadow-lg hover:shadow-xl transition overflow-visible bg-[#1d1d2e]"
               >
                 {/* Thumbnail */}
                 {video.thumbnail && (
@@ -162,15 +162,9 @@ const handleUpdate = async (videoId, updatedStatus) => {
                     {/* ✅ Mark as Completed */}
                     {video.status !== 'Completed' ? (
                     <button
+                    style={{ fontFamily: 'var(--font-manrope)' }}
                         className="w-full bg-violet-600 hover:bg-violet-700 text-white py-2 rounded-lg text-sm font-semibold mb-4"
-                        onClick={() => {
-                        handleUpdate(video.id, 'Completed');
-                        setVideos((prev) =>
-                            prev.map((v) =>
-                            v.id === video.id ? { ...v, status: 'Completed' } : v
-                            )
-                        );
-                        }}
+                        onClick={() => handleUpdate(video.id, 'Completed')}
                     >
                         ✅ Mark as Completed
                     </button>
@@ -187,6 +181,7 @@ const handleUpdate = async (videoId, updatedStatus) => {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="block hover:underline"
+                    style={{ fontFamily: 'var(--font-manrope)' }}
                     >
                     📺 View on YouTube
                     </a>
@@ -194,13 +189,15 @@ const handleUpdate = async (videoId, updatedStatus) => {
                     <Link
                     href={`/playlist/${playlist_id}/calendar`}
                     className="block hover:underline"
+                    style={{ fontFamily: 'var(--font-manrope)' }}
                     >
                     📅 View on Calendar
                     </Link>
 
                     <div className="mt-2">
-                    <label className="block mb-1">🛠 Change Status:</label>
+                    <label style={{ fontFamily: 'var(--font-manrope)' }} className="block mb-1">🛠 Change Status:</label>
                     <select
+                    style={{ fontFamily: 'var(--font-manrope)' }}
                         className="w-full bg-[#2e2e42] border border-white/20 text-white rounded-lg px-2 py-1 text-sm"
                         value={video.status}
                         onChange={(e) => handleUpdate(video.id, e.target.value)}

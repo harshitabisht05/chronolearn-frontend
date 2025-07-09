@@ -78,7 +78,7 @@ export default function DashboardPage() {
           {playlists.map((pl, index) => (
             <div
               key={pl.playlist_id}
-              className="bg-[#1d1d2e] rounded-xl border border-white/10 shadow-lg hover:shadow-xl transition overflow-hidden"
+              className="bg-[#1d1d2e] rounded-xl border border-white/10 shadow-lg hover:shadow-xl transition overflow-visible"
               ref={(el) => (menuRefs.current[index] = el)}
             >
               {pl.thumbnail && (
@@ -192,7 +192,7 @@ export default function DashboardPage() {
               }}
             >
               <div className="flex flex-col gap-2 mb-4 text-white">
-                <label>
+                <label style={{ fontFamily: 'var(--font-manrope)' }}>
                   Start Date:
                   <input
                     type="date"
@@ -204,7 +204,7 @@ export default function DashboardPage() {
                 </label>
 
                 {scheduleType === 'by-hours' ? (
-                  <label>
+                  <label style={{ fontFamily: 'var(--font-manrope)' }}>
                     Hours per Day:
                     <input
                       type="number"
@@ -217,7 +217,7 @@ export default function DashboardPage() {
                     />
                   </label>
                 ) : (
-                  <label>
+                  <label style={{ fontFamily: 'var(--font-manrope)' }}>
                     Target End Date:
                     <input
                       type="date"
@@ -234,6 +234,7 @@ export default function DashboardPage() {
                 <button
                   type="button"
                   onClick={() => setScheduleType('by-hours')}
+                  style={{ fontFamily: 'var(--font-manrope)' }}
                   className={`px-4 py-2 rounded-full border ${
                     scheduleType === 'by-hours' ? 'border-violet-500 text-violet-400' : 'border-white/30 text-white/60'
                   }`}
@@ -243,6 +244,7 @@ export default function DashboardPage() {
                 <button
                   type="button"
                   onClick={() => setScheduleType('by-date')}
+                  style={{ fontFamily: 'var(--font-manrope)' }}
                   className={`px-4 py-2 rounded-full border ${
                     scheduleType === 'by-date' ? 'border-violet-500 text-violet-400' : 'border-white/30 text-white/60'
                   }`}
