@@ -20,7 +20,7 @@ export default function CreatedBy() {
 
             <p className="mt-6 text-lg text-white/70">Contact Info</p>
             <div className="flex gap-6 mt-3 text-white/90 text-2xl">
-                <a href="https://harshitabisht-portfolio.netlify.app/" target="_blank" rel="noopener noreferrer">
+                <a href="https://harshitabisht05.github.io/portfolio/" target="_blank" rel="noopener noreferrer">
                 <FaGlobe className="hover:text-white transition" />
                 </a>
                 <a href="https://www.linkedin.com/in/harshitabisht0511" target="_blank" rel="noopener noreferrer">
