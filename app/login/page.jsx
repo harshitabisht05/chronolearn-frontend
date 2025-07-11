@@ -43,10 +43,9 @@ export default function LoginPage() {
       localStorage.setItem('users_id', data.users_id);
       setMessage('✅ Logged in successfully!');
 
-      setTimeout(() => {
-        setLoading(false);
-        router.push('/import');
-      }, 1200);
+      localStorage.setItem('token', data.access_token);
+      localStorage.setItem('users_id', data.users_id);
+      router.push('/import');
     } catch (err) {
       console.error('Login error:', err);
       setMessage('Something went wrong. Please try again.');

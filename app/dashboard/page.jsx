@@ -25,7 +25,9 @@ export default function DashboardPage() {
     const stored = localStorage.getItem('token');
     if (stored) {
       setToken(stored);
-      fetchDashboard(stored);
+      setLoading(true); // trigger loading indicator
+      setTimeout(() => fetchDashboard(stored), 0); // defer fetch to after render
+
     } else {
       router.push('/login');
     }
@@ -82,7 +84,12 @@ export default function DashboardPage() {
               ref={(el) => (menuRefs.current[index] = el)}
             >
               {pl.thumbnail && (
-                <img src={pl.thumbnail} alt={pl.title} className="w-full h-60 object-cover" />
+                <img
+                  loading="lazy"
+                  src={pl.thumbnail}
+                  alt={pl.title}
+                  className="w-full h-60 object-cover"
+                />
               )}
 
               <div className="p-6 relative">

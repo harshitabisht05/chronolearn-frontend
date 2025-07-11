@@ -3,19 +3,20 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import Image from 'next/image';
 import Navbar from '../components/Navbar';
-
+import LoadingSpinner from '../components/LoadingSpinner'; // ✅ make sure this is created and imported
 
 export default function RegisterPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
+  const [loading, setLoading] = useState(false); // ✅ new state
   const router = useRouter();
 
   const handleRegister = async (e) => {
     e.preventDefault();
     setMessage('');
+    setLoading(true); // ✅ show loader
 
     try {
       const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/register`, {
@@ -30,16 +31,21 @@ export default function RegisterPage() {
 
       if (!res.ok) {
         setMessage(data.detail || 'Registration failed.');
+        setLoading(false); // ✅ hide loader
         return;
       }
 
       setMessage('🎉 Registration successful! Please log in.');
       setEmail('');
       setPassword('');
-      setTimeout(() => router.push('/login'), 2000);
+      setTimeout(() => {
+        setLoading(false); // ✅ optional (won't show anyway after redirect)
+        router.push('/login');
+      }, 2000);
     } catch (error) {
       console.error('Registration error:', error);
       setMessage('Something went wrong. Please try again.');
+      setLoading(false); // ✅ hide loader
     }
   };
 
@@ -77,37 +83,43 @@ export default function RegisterPage() {
         </p>
       )}
 
-      <form onSubmit={handleRegister} className="space-y-5">
-        <input
-          type="email"
-          name="email"
-          placeholder="Enter your email"
-          required
-          className="w-full bg-[#2a2a3b] rounded-md px-4 py-3 outline-none text-white placeholder-white/50"
-          style={{ fontFamily: 'var(--font-nunito)' }}
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
+      {loading ? (
+        <div className="flex justify-center items-center h-32">
+          <LoadingSpinner message="Creating your account..." />
+        </div>
+      ) : (
+        <form onSubmit={handleRegister} className="space-y-5">
+          <input
+            type="email"
+            name="email"
+            placeholder="Enter your email"
+            required
+            className="w-full bg-[#2a2a3b] rounded-md px-4 py-3 outline-none text-white placeholder-white/50"
+            style={{ fontFamily: 'var(--font-nunito)' }}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
 
-        <input
-          type="password"
-          name="password"
-          placeholder="Enter your password"
-          required
-          className="w-full bg-[#2a2a3b] rounded-md px-4 py-3 outline-none text-white placeholder-white/50"
-          style={{ fontFamily: 'var(--font-nunito)' }}
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
+          <input
+            type="password"
+            name="password"
+            placeholder="Enter your password"
+            required
+            className="w-full bg-[#2a2a3b] rounded-md px-4 py-3 outline-none text-white placeholder-white/50"
+            style={{ fontFamily: 'var(--font-nunito)' }}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
 
-        <button
-          type="submit"
-          className="w-full bg-violet-500 hover:bg-violet-600 text-white rounded-md py-3 text-base font-semibold transition-all"
-          style={{ fontFamily: 'var(--font-manrope)' }}
-        >
-          Create account
-        </button>
-      </form>
+          <button
+            type="submit"
+            className="w-full bg-violet-500 hover:bg-violet-600 text-white rounded-md py-3 text-base font-semibold transition-all"
+            style={{ fontFamily: 'var(--font-manrope)' }}
+          >
+            Create account
+          </button>
+        </form>
+      )}
     </div>
   </div>
 </div>
